@@ -1,0 +1,9 @@
+numpy
+pandas
+seaborn
+matplotlib
+langchain
+langchain_community
+langsmith
+ipykernel
+seaborn
