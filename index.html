@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Monitor</title>
+</head>
+<body>
+  <div id="last-hit">Never</div>
+
+  <script>
+    const API_URL = "https://api.tutorfolio.site";
+    const INTERVAL_MS = 890 * 1000;
+
+    async function hitApi() {
+      try {
+        const response = await fetch(API_URL, { method: "GET", cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        document.getElementById("last-hit").textContent =
+          new Date().toLocaleString();
+      } catch (error) {
+        console.error("API request failed:", error);
+      }
+    }
+
+    hitApi();
+    setInterval(hitApi, INTERVAL_MS);
+  </script>
+</body>
+</html>
